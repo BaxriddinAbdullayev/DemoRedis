@@ -1,9 +1,14 @@
 package lesson.uz.controller;
 
+import lesson.uz.config.CustomUserDetails;
 import lesson.uz.dto.TaskDTO;
 import lesson.uz.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +21,14 @@ public class TaskController {
 
     @PostMapping("")
     public ResponseEntity<TaskDTO> create(@RequestBody TaskDTO dto) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
+        CustomUserDetails principal = (CustomUserDetails) authentication.getPrincipal();
+        System.out.println(principal.getName());
+
+
         TaskDTO result = taskService.create(dto);
         return ResponseEntity.ok(result);
     }

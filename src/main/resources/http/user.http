@@ -1,0 +1,11 @@
+### Registration Profile
+POST localhost:8080/user/registration
+Content-Type: application/json
+
+{
+  "name": "Hoshim",
+  "surname": "Hoshimov",
+  "phone": "1111111",
+  "password": "1111",
+  "role": "ROLE_MANAGER"
+}
