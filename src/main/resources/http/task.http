@@ -1,0 +1,19 @@
+### Creade Task
+POST localhost:8080/task
+Content-Type: application/json
+Authorization: Basic dXNlcjoyNzkx
+
+{
+  "title": "Sartarosh",
+  "content": "Soch oldirish kerak"
+}
+
+
+### Get All Task
+GET localhost:8080/task
+
+
+
+### Delete Task
+DELETE localhost:8080/task/d2287779-1ceb-41f1-acb9-e47ab2dbdc35
+Authorization: Basic dXNlcjoyNzkx
