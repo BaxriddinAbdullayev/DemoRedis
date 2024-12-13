@@ -28,7 +28,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 //            throw new UsernameNotFoundException(username);
 //        }
 //        UserEntity entity = optional.get();
+
         UserEntity entity = (UserEntity) redisService.findByUsername(username);
+        if(entity == null){
+            throw new UsernameNotFoundException("User not found");
+        }
         CustomUserDetails userDetails = new CustomUserDetails(entity);
         return userDetails;
     }

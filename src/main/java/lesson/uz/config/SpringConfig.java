@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -19,9 +20,14 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SpringConfig {
 
     @Autowired
@@ -42,14 +48,25 @@ public class SpringConfig {
             authorizationManagerRequestMatcherRegistry
                     .requestMatchers("/user/registration").permitAll()
                     .requestMatchers(HttpMethod.GET,"/task").permitAll()
-                    .requestMatchers(HttpMethod.GET,"/task/*").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.DELETE,"/task/{id}/admin").hasRole("ADMIN")
                     .anyRequest()
                     .authenticated();
         });
 
         http.httpBasic(Customizer.withDefaults());
+
         http.csrf(AbstractHttpConfigurer::disable);
-        http.cors(AbstractHttpConfigurer::disable);
+        http.cors(httpSecurityCorsConfigurer -> {
+            CorsConfiguration corsConfiguration = new CorsConfiguration();
+            corsConfiguration.setAllowedOriginPatterns(Arrays.asList("*"));
+            corsConfiguration.setAllowedMethods(Arrays.asList("*"));
+            corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
+
+            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+            source.registerCorsConfiguration("/**", corsConfiguration);
+
+            httpSecurityCorsConfigurer.configurationSource(source);
+        });
 
         return http.build();
     }

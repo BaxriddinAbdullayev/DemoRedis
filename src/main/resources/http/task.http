@@ -13,7 +13,27 @@ Authorization: Basic MTExMTExMToxMTEx
 GET localhost:8080/task
 
 
+### Get All Task
+GET localhost:8080/task/my
+Authorization: Basic MTExMTExMToxMTEx
+
+
+### Update Task
+PUT localhost:8080/task/1286cdc1-1153-402e-85b3-89a0a5b1e2bc
+Content-Type: application/json
+Authorization: Basic MTExMTExMToxMTEx
+
+{
+  "title": "Sartarosh2",
+  "content": "Soch oldirish kerak"
+}
+
 
 ### Delete Task
 DELETE localhost:8080/task/d2287779-1ceb-41f1-acb9-e47ab2dbdc35
 Authorization: Basic dXNlcjoyNzkx
+
+
+### Delete Task Admin
+DELETE localhost:8080/task/1286cdc1-1153-402e-85b3-89a0a5b1e2bc/admin
+Authorization: Basic MjIyMjIyMjoyMjIy
