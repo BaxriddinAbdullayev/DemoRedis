@@ -1,10 +1,10 @@
 ### Creade Task
 POST localhost:8080/task
 Content-Type: application/json
-Authorization: Basic MTExMTExMToxMTEx
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInN1YiI6IjIyMjIyMjIiLCJpYXQiOjE3MzQxMDc5OTEsImV4cCI6MTczNjY5OTk5MX0.h0l6Jyf4-uhxvDRum2VQzTsNcd4-LCW4PXyPLYMS6kw
 
 {
-  "title": "Sartarosh",
+  "title": "Sartarosh11",
   "content": "Soch oldirish kerak"
 }
 

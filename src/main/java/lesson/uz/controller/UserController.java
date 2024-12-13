@@ -1,5 +1,6 @@
 package lesson.uz.controller;
 
+import lesson.uz.dto.TokenDTO;
 import lesson.uz.dto.UserDTO;
 import lesson.uz.dto.auth.AuthDTO;
 import lesson.uz.service.UserService;
@@ -28,9 +29,9 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
-//    @PostMapping("/refresh-token")
-//    public ResponseEntity<TokenDTO> refreshToken(@RequestBody TokenDTO dto){
-//        TokenDTO result = userService.getNewAccessToken(dto);
-//        return ResponseEntity.ok(result);
-//    }
+    @PostMapping("/refresh-token")
+    public ResponseEntity<TokenDTO> refreshToken(@RequestBody TokenDTO dto){
+        TokenDTO result = userService.getNewAccessToken(dto);
+        return ResponseEntity.ok(result);
+    }
 }
