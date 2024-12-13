@@ -49,6 +49,7 @@ public class SpringConfig {
                     .requestMatchers("/user/registration").permitAll()
                     .requestMatchers(HttpMethod.GET,"/task").permitAll()
                     .requestMatchers(HttpMethod.DELETE,"/task/{id}/admin").hasRole("ADMIN")
+                    .requestMatchers("/user/authorization").permitAll()
                     .anyRequest()
                     .authenticated();
         });

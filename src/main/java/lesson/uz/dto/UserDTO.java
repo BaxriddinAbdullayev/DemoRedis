@@ -10,6 +10,15 @@ public class UserDTO {
     private String phone;
     private String password;
     private UserRole role;
+    private String jwt;
+
+    public String getJwt() {
+        return jwt;
+    }
+
+    public void setJwt(String jwt) {
+        this.jwt = jwt;
+    }
 
     public String getId() {
         return id;

@@ -9,3 +9,13 @@ Content-Type: application/json
   "password": "2222",
   "role": "ROLE_ADMIN"
 }
+
+
+### Login
+POST localhost:8080/user/authorization
+Content-Type: application/json
+
+{
+  "phone": "2222222",
+  "password": "2222"
+}
