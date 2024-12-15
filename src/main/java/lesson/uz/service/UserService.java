@@ -33,9 +33,6 @@ public class UserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private RedisService redisService;
-
     public UserDTO registration(UserDTO dto) {
         Optional<UserEntity> optional = userRepository.findByPhoneAndVisibleTrue(dto.getPhone());
         if (optional.isPresent()) {
@@ -43,7 +40,6 @@ public class UserService {
         }
 
         UserEntity entity = new UserEntity();
-
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setPhone(dto.getPhone());
@@ -51,7 +47,6 @@ public class UserService {
         entity.setRole(dto.getRole());
 
         userRepository.save(entity);
-        redisService.save(entity.getPhone(), entity);
 
         dto.setId(entity.getId());
         return dto;
